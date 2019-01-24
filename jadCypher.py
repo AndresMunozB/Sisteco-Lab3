@@ -65,7 +65,9 @@ class JadCypher():
             text += " "
         return text
 
-    def generateMAC(self,text,password,size_block):
+    def generateMAC(self,text,password,size_block,show):
+        if(show):
+            print("GENERANDO MAC:")
         text = self.addPadding(text,size_block)
         #print("texto:",text)
         text = text [::-1]
@@ -77,12 +79,16 @@ class JadCypher():
             textXor = bit_array_to_string(xor)
             encryp = jad.encrypt(textXor,password,len(textXor))
             self.vi = string_to_bit_array(encryp)
+            if(show):
+                print("Paso",i, "MAC en bits:", self.vi)
         mac = bit_array_to_string(self.vi)
         mac = mac[::-1]
         #print(mac)
         return mac 
 
-    def encrypt(self,text,password,size_block):
+    def encrypt(self,text,password,size_block,show):
+        if(show):
+            print("ENCRIPTANDO:")
         result = ""
         text = self.addPadding(text,size_block)
         self.generateBlocks(text,size_block)
@@ -94,12 +100,16 @@ class JadCypher():
             encryp = jad.encrypt(textXor,password,len(textXor))
             self.vi = string_to_bit_array(encryp)
             result += encryp
-        mac = self.generateMAC(text,password,size_block)
+            if(show):
+                print("Bloque",i, "Bloque encriptado en bits:", self.vi)
+        mac = self.generateMAC(text,password,size_block,show)
         result +=  mac #SE AGREGA EL MAC
         #print(mac)
         return result 
 
-    def decrypt(self,text,password,size_block):
+    def decrypt(self,text,password,size_block,show):
+        if(show):
+            print("DESENCRIPTANDO:")
         result = ""
         self.initvi(size_block)
         mac = text[len(text) - len(bit_array_to_string(self.vi)):]
@@ -113,15 +123,16 @@ class JadCypher():
             decryp = jad.decrypt(texto,password,len(texto))
             plaintext = self.xor(self.vi,string_to_bit_array(decryp))
             self.vi = self.blocks[i]
-            
+            if(show):
+                print("Bloque",i, "Bloque desencriptado en bits:", plaintext)
             result += bit_array_to_string(plaintext)
-        if(self.validateMAC(result,mac,password,size_block)):
+        if(self.validateMAC(result,mac,password,size_block,show)):
             print("NOTA: El mensaje es auténtico e integro.")
         else:
             print("NOTA: El mensaje no es auténtico e integro.")
         return result
-    def validateMAC(self,text, mac, key, size_block):
-        newMac = self.generateMAC(text,key,size_block)
+    def validateMAC(self,text, mac, key, size_block,show):
+        newMac = self.generateMAC(text,key,size_block,show)
         if newMac == mac:
             return True
         else:

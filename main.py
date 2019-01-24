@@ -12,26 +12,26 @@ def graficar(title,xlabel,ylabel,x,y):
 	plt.plot(x,y,"-")
 	plt.show()
 
-def encryptFile(inputName,outputName,password,size_block):
+def encryptFile(inputName,outputName,password,size_block,show):
     jad = JadCypher()
     inputFile = open(inputName,"r")
     outputFile = open(outputName, "w")
     text = ""
     for line in inputFile:
         text += line
-    stringOutput = jad.encrypt(text,password,size_block)
+    stringOutput = jad.encrypt(text,password,size_block,show)
     outputFile.write(stringOutput)
     inputFile.close()
     outputFile.close()
 
-def decryptFile(inputName,outputName,password,size_block):
+def decryptFile(inputName,outputName,password,size_block,show):
     jad = JadCypher()
     inputFile = open(inputName,"r")
     outputFile = open(outputName, "w")
     text = ""
     for line in inputFile:
         text += line
-    stringOutput = jad.decrypt(text,password,size_block)
+    stringOutput = jad.decrypt(text,password,size_block,show)
     outputFile.write(stringOutput)
     inputFile.close()
     outputFile.close()
@@ -42,7 +42,9 @@ def printMenu():
     print("2) Cambiar contraseña.")
     print("3) Encriptar archivo.")
     print("4) Desencriptar archivo.")
-    print("5) Salir")
+    print("5) Encriptar archivo (mostrar pasos).")
+    print("6) Desencriptar archivo (mostrar pasos).")
+    print("7) Salir")
 
 def avalancha(t1,t2):
     contador = 0
@@ -96,44 +98,37 @@ def main():
             #try:
             inputName = input("Ingrese el nombre del archivo de entrada: ")
             outputName = input("Ingrese el nombre del archivo de salida: ")
-            start_time = time.time()
-            encryptFile(inputName,outputName,password,size_block)
-            exec_time = (time.time() - start_time)
-            throughput = size_block/(time.time() - start_time)
-            #print("Time: ", exec_time)
-            #print("Throughput: ", throughput)
-                
-            #Lo comentado es utilizado para evaluar la encriptación
-            """sizeBloques = []
-            tiempos = []
-            throughputs = []
-            for i in range(1,32):
-                sizeBloques.append(i)
-            for size in sizeBloques:
-                start_time = time.time()
-                encryptFile(inputName,outputName,password,size)
-                exec_time = (time.time() - start_time)
-                throughput = size/(time.time() - start_time)
-                tiempos.append(exec_time)
-                throughputs.append(throughput)
-                print("Tiempo de cifrado (tamaño " + str(size) + "): %s segundos" % exec_time)
-                print("Throughput (tamaño " + str(size) + "): %s" % throughput)
-            graficar("","Tamaño del bloque [Bytes]", "Tiempo [s]", sizeBloques, tiempos)
-            graficar("","Tamaño del bloque [Bytes]", "Throughput", sizeBloques, throughputs)
-            """
+            
+            encryptFile(inputName,outputName,password,size_block,False)
+            
+            
             #except:
             #    print("Error al encriptar, intente nuevamente.")
         elif (menu == '4'):
             #try:
             inputName = input("Ingrese el nombre del archivo de entrada: ")
             outputName = input("Ingrese el nombre del archivo de salida: ")
-            decryptFile(inputName,outputName,password,size_block)
+            decryptFile(inputName,outputName,password,size_block,False)
             #except:
             #1    print("Error al desencriptar, intente nuevamente.")
-        
-            
         elif (menu == '5'):
-            compareFiles()
+            #try:
+            inputName = input("Ingrese el nombre del archivo de entrada: ")
+            outputName = input("Ingrese el nombre del archivo de salida: ")
+            
+            encryptFile(inputName,outputName,password,size_block,True)
+            
+            
+            #except:
+            #    print("Error al encriptar, intente nuevamente.")
+        elif (menu == '6'):
+            #try:
+            inputName = input("Ingrese el nombre del archivo de entrada: ")
+            outputName = input("Ingrese el nombre del archivo de salida: ")
+            decryptFile(inputName,outputName,password,size_block,True)
+            #except:
+            #1    print("Error al desencriptar, intente nuevamente.")
+        elif (menu == '7'):
             break
         
 
