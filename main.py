@@ -99,39 +99,33 @@ def main():
             except:
                 print("Error al ingresar el la contraseña.")
         elif (menu == '3'):
-            #try:
-            inputName = input("Ingrese el nombre del archivo de entrada: ")
-            outputName = input("Ingrese el nombre del archivo de salida: ")
-            
-            encryptFile(inputName,outputName,password,size_block,False)
-            
-            
-            #except:
-            #    print("Error al encriptar, intente nuevamente.")
+            try:
+                inputName = input("Ingrese el nombre del archivo de entrada: ")
+                outputName = input("Ingrese el nombre del archivo de salida: ")    
+                encryptFile(inputName,outputName,password,size_block,False)
+            except:
+                print("Error al encriptar, intente nuevamente.")
         elif (menu == '4'):
-            #try:
-            inputName = input("Ingrese el nombre del archivo de entrada: ")
-            outputName = input("Ingrese el nombre del archivo de salida: ")
-            decryptFile(inputName,outputName,password,size_block,False)
-            #except:
-            #1    print("Error al desencriptar, intente nuevamente.")
+            try:
+                inputName = input("Ingrese el nombre del archivo de entrada: ")
+                outputName = input("Ingrese el nombre del archivo de salida: ")
+                decryptFile(inputName,outputName,password,size_block,False)
+            except:
+                print("Error al desencriptar, intente nuevamente.")
         elif (menu == '5'):
-            #try:
-            inputName = input("Ingrese el nombre del archivo de entrada: ")
-            outputName = input("Ingrese el nombre del archivo de salida: ")
-            
-            encryptFile(inputName,outputName,password,size_block,True)
-            
-            
-            #except:
-            #    print("Error al encriptar, intente nuevamente.")
+            try:
+                inputName = input("Ingrese el nombre del archivo de entrada: ")
+                outputName = input("Ingrese el nombre del archivo de salida: ")
+                encryptFile(inputName,outputName,password,size_block,True)
+            except:
+                print("Error al encriptar, intente nuevamente.")
         elif (menu == '6'):
-            #try:
-            inputName = input("Ingrese el nombre del archivo de entrada: ")
-            outputName = input("Ingrese el nombre del archivo de salida: ")
-            decryptFile(inputName,outputName,password,size_block,True)
-            #except:
-            #1    print("Error al desencriptar, intente nuevamente.")
+            try:
+                inputName = input("Ingrese el nombre del archivo de entrada: ")
+                outputName = input("Ingrese el nombre del archivo de salida: ")
+                decryptFile(inputName,outputName,password,size_block,True)
+            except:
+                print("Error al desencriptar, intente nuevamente.")
         elif (menu == '7'):
             break
         
