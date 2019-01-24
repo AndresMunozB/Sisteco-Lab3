@@ -58,7 +58,7 @@ class Jad():
 
     def getValidPassword(self,password,size_block):
         if len(password) < size_block:
-            password = self.addPadding(password)
+            password = self.addPadding(password,size_block)
         elif len(password) > size_block:
             password = password[:size_block] 
         return password

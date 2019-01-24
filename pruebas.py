@@ -1,6 +1,6 @@
+from jad import Jad
 
-
-
+"""
 def string_to_bit_array(text):#Convierte un string a una lista de bits
                                 
     array = list()
@@ -31,7 +31,8 @@ def addPadding(text,size_block):
         for i in range(pad_len):
             text += " "
         return text
-
+"""
+"""
 string = "hola"
 #Por cada letra hay 8 bits.
 arrayBits = string_to_bit_array(string)
@@ -48,3 +49,18 @@ print("texto:", texto, "largo: ", largo)
 texto = addPadding(texto,8)
 largo = len(texto)
 print("texto:", texto, "largo: ", largo)
+"""
+
+jad = Jad()
+size_block = 14
+textoEncrypt = jad.encrypt("hola como estas!","holacomo",size_block)
+archivo = open("salida.txt","w")
+archivo.write(textoEncrypt)
+archivo.close()
+print(textoEncrypt)
+textoDecrypt = jad.decrypt(textoEncrypt,"holacomo",size_block)
+print(textoDecrypt)
+string = "hola"
+string = string[:2]
+print(string)
+#print(jad.keys)

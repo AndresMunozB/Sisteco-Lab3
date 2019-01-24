@@ -44,10 +44,38 @@ def printMenu():
     print("4) Desencriptar archivo.")
     print("5) Salir")
 
+def avalancha(t1,t2):
+    contador = 0
+    largo = 0
+    t1bit = t1
+    t2bit = t2
+    if len(t1bit) > len(t2bit):
+        largo = len(t2bit)
+    else:
+        largo = len(t1bit)
+    for i in range(len(t1bit)):
+        if(t1bit[i] != t2bit[i]):
+            
+            print(i,t1bit[i],t2bit[i])
+            contador +=1
+    print(contador)
+def compareFiles():
+    inputFile1 = open("1","r")
+    inputFile2 = open("3","r")
+    text1 = ""
+    text2 = ""
+    for line in inputFile1:
+        text1 += line
+    for line in inputFile2:
+        text2 += line
+    avalancha(text1,text2)
+    inputFile1.close()
+    inputFile2.close()
+
 def main():
     
     size_block = 8
-    password = "holacomo"
+    password = "chaopenc"
     menu = ""
     print("NOTA: Tamaño del bloque por defecto: 8 ")
     print("      Contraseña por defecto: 'holacomo' \n\n")
@@ -72,8 +100,8 @@ def main():
             encryptFile(inputName,outputName,password,size_block)
             exec_time = (time.time() - start_time)
             throughput = size_block/(time.time() - start_time)
-            print("Time: ", exec_time)
-            print("Throughput: ", throughput)
+            #print("Time: ", exec_time)
+            #print("Throughput: ", throughput)
                 
             #Lo comentado es utilizado para evaluar la encriptación
             """sizeBloques = []
@@ -96,14 +124,18 @@ def main():
             #except:
             #    print("Error al encriptar, intente nuevamente.")
         elif (menu == '4'):
-            try:
-                inputName = input("Ingrese el nombre del archivo de entrada: ")
-                outputName = input("Ingrese el nombre del archivo de salida: ")
-                decryptFile(inputName,outputName,password,size_block)
-            except:
-                print("Error al desencriptar, intente nuevamente.")
+            #try:
+            inputName = input("Ingrese el nombre del archivo de entrada: ")
+            outputName = input("Ingrese el nombre del archivo de salida: ")
+            decryptFile(inputName,outputName,password,size_block)
+            #except:
+            #1    print("Error al desencriptar, intente nuevamente.")
+        
+            
         elif (menu == '5'):
+            compareFiles()
             break
+        
 
 
 
