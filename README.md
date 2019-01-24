@@ -1,3 +1,7 @@
+Integrante: Andrés Muñoz 
+            Diego Mellis
+            Javier Arredondo
+
 Como se ha pedido en el enunciado, se ha utilizado el algoritmo realizado en la experiencia anterior para generar el MAC.
 Dentro de los aspectos importantes definidos para ese protocolo se tiene lo siguiente:
     -El tamaño del bloque puede ser variable.
@@ -12,3 +16,5 @@ Para generar el MAC se realizan los siguientes pasos:
 El texto entregado por la encriptación es el resultado de la concatenacion de la encriptación misma del texto junto al generado.
 
 Otra cosa a considerar es que al momento de desencriptar se entrega la información correspondiente de si el mensaje es auténtico.
+
+

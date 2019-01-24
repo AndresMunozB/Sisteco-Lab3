@@ -1,5 +1,9 @@
-#import modulo as m
-#m.funcion()
+
+"""
+Integrante: Andrés Muñoz 
+            Diego Mellis
+            Javier Arredondo
+"""    
 from jadCypher import JadCypher
 import time
 import matplotlib.pyplot as plt
